@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainForm.ui.qml</file>
+        <file>ImageElement.qml</file>
+        <file>image/black_arrow.png</file>
+        <file>image/rotation.png</file>
+        <file>image/arrow.png</file>
+        <file>image/house.png</file>
+        <file>image/pine.png</file>
+        <file>image/sun.jpg</file>
+        <file>componentCreation.js</file>
+    </qresource>
+</RCC>
