@@ -1,13 +1,15 @@
 import QtQuick 2.5
 import QtQuick.Window 2.0
 import QtGraphicalEffects 1.0
+
 Item {
     id: main_item
+    objectName: image_object
     width: 200
     height: 200
     property bool isSelected: false
     property string image_source: "qrc:/image/house.png"
-    signal changePosition(var xPosition, var yPosition)
+    property string image_object: ""
     Rectangle {
         id: main_image
         x: 0
@@ -33,15 +35,19 @@ Item {
                     arrow_image.visible = false
                     isSelected = false
                     rotattion_image.visible = false
+                    rotattion_image1.visible = false
+                    UIBridge.setCurrentObjectName("");
                 } else {
                     arrow_image.visible = true
                     isSelected = true
                     rotattion_image.visible = true
+                    rotattion_image1.visible = true
                 }
 
             }
             onPositionChanged: {
-                main_item.changePosition(mouseX, mouseY);
+                UIBridge.setCurrentObjectName(main_item.objectName);
+                UIBridge.mainQMLCallChangePosition(mouseX, mouseY);
             }
 
         }
@@ -86,6 +92,50 @@ Item {
             repeat: true
             onTriggered: {
                 content_image.rotation = content_image.rotation + 1
+            }
+        }
+    }
+
+    Rectangle {
+        id: mask1
+        width: 20
+        height: 20
+        radius: 250
+        visible: false
+    }
+    Image {
+        id: rotattion_image1
+        y: parent.height - mask1.height
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: 20
+        height: 20
+        visible: false
+        source: "qrc:/image/rotation.png"
+        fillMode: Image.PreserveAspectCrop
+        layer.enabled: true
+        layer.effect: OpacityMask {
+            maskSource: mask
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                content_image.rotation = content_image.rotation - 1
+            }
+            onPressAndHold: {
+                elapsedTimer1.start();
+            }
+            onReleased: {
+                elapsedTimer1.stop();
+            }
+        }
+        Timer  {
+            id: elapsedTimer1
+            interval: 10
+            running: false
+            repeat: true
+            onTriggered: {
+                content_image.rotation = content_image.rotation - 1
             }
         }
     }

@@ -9,6 +9,7 @@ Window {
     width: 800
     height: 600
     title: qsTr("Hello World")
+    property int objectCounter: 0
 
     MainForm {
         anchors.fill: parent
@@ -40,23 +41,24 @@ Window {
         }
     }
 
-    ImageElement {
-        id: img1
-        x: 0
-        y: 0
-        width: 200
-        height: 200
-        visible: false
-    }
+//    ImageElement {
+//        id: img1
+//        x: 0
+//        y: 0
+//        width: 200
+//        height: 200
+//        visible: false
+//    }
 
-    Connections {
-        target: img1
-        ignoreUnknownSignals: true
-        onChangePosition: {
-            img1.x = img1.x + xPosition - img1.width/2
-            img1.y = img1.y + yPosition - img1.height/2
-        }
-    }
+//    Connections {
+//        target: img1
+//        ignoreUnknownSignals: true
+//        onChangePosition: {
+//            UIBridge.mainQMLCallChangePosition(xPosition, yPosition);
+//            img1.x = img1.x + xPosition - img1.width/2
+//            img1.y = img1.y + yPosition - img1.height/2
+//        }
+//    }
 
     FileDialog {
         id: fileDialog
@@ -69,7 +71,9 @@ Window {
                 var url = fileDialog.fileUrls[i]
                 str += Qt.resolvedUrl(url)
             }
-            MyScript.createSpriteObjects(str);
+            objectCounter = objectCounter + 1;
+            var objName = "hunght" + objectCounter
+            MyScript.createSpriteObjects(str, objName);
         }
         onRejected: {
             console.log("Canceled")

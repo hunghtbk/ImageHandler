@@ -1,9 +1,9 @@
 var component;
 var sprite;
 
-function createSpriteObjects(source) {
+function createSpriteObjects(source, obj) {
     component = Qt.createComponent("ImageElement.qml");
-    sprite = component.createObject(appWindow, {x: 100, y: 100, image_source: source});
+    sprite = component.createObject(appWindow, {x: 100, y: 100, image_source: source, image_object: obj});
 
     if (sprite == null) {
         // Error Handling
