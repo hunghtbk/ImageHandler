@@ -47,7 +47,7 @@ Window {
 //        y: 0
 //        width: 200
 //        height: 200
-//        visible: false
+//        visible: true
 //    }
 
 //    Connections {

@@ -10,12 +10,14 @@ Item {
     property bool isSelected: false
     property string image_source: "qrc:/image/house.png"
     property string image_object: ""
+
     Rectangle {
         id: main_image
         x: 0
         y: 0
         width: parent.width
         height: parent.height
+        color: "transparent"
 
         Image {
             id: content_image
@@ -183,6 +185,13 @@ Item {
                 } else {
                     main_item.height = main_item.height - 1
                 }
+            }
+
+
+            onReleased: {
+                console.log("current x: " + main_item.x + "current y" + main_item.y +
+                            "current width" + main_item.width +
+                            "current height" + main_item.height)
             }
         }
     }
