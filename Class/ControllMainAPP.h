@@ -3,6 +3,7 @@
 #include <QQmlApplicationEngine>
 #include <Class/UIBridge.h>
 #include <QQmlContext>
+#include <QStringList>
 
 class ControllMainAPP : public QObject
 {
@@ -23,6 +24,7 @@ private:
 public slots:
     handleHMIEvent(QString a,QString b);
     handleChangePositionEvent(int x, int y, QString currentIMGObjName);
+    handleList(QStringList mList);
 };
 
 #endif // CONTROLLMAINAPP_H

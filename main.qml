@@ -41,6 +41,25 @@ Window {
         }
     }
 
+    Rectangle {
+        x: 690
+        y: 50
+        width: 100
+        height: 40
+        color: "green"
+        Text {
+            anchors.centerIn: parent
+            text: "Gen info"
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                UIBridge.genInfo();
+            }
+        }
+    }
+
 //    ImageElement {
 //        id: img1
 //        x: 0
@@ -74,6 +93,7 @@ Window {
             objectCounter = objectCounter + 1;
             var objName = "hunght" + objectCounter
             MyScript.createSpriteObjects(str, objName);
+            UIBridge.importObjectNametToList(objName)
         }
         onRejected: {
             console.log("Canceled")

@@ -51,3 +51,10 @@ ControllMainAPP::handleChangePositionEvent(int x, int y, QString currentIMGObjNa
         }
     }
 }
+
+ControllMainAPP::handleList(QStringList mList)
+{
+    for (int i = 0; i < mList.length(); i++) {
+        qDebug() << "Information of objectname: " << mList.at(i);
+    }
+}
